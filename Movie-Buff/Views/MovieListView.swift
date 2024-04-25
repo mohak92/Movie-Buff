@@ -19,44 +19,43 @@ struct MovieListView: View {
                         .foregroundColor(.red)
                         .bold()
                 }
-            } else {
-                NavigationStack {
-                    GeometryReader {_ in
-                        ScrollView {
-                            BannerImageView(movie: movieViewModel.trendingMovie.first ?? Mockdata.sampledata)
-                                .overlay(content: {
-                                    LinearPoster()
-                                })
-                                .background(ScrollViewConfigurator {
-                                    $0?.bounces = false
-                                })
-                            HorizonScrollView(titleView: "Trending", movieApi: movieViewModel.trendingMovie)
-                            HorizonScrollView(titleView: "Upcoming", movieApi: movieViewModel.upComingMovie)
-                            HorizonScrollView(titleView: "Top Rated", movieApi: movieViewModel.topRatedMovie)
-                            HorizonScrollView(titleView: "Now Playing", movieApi: movieViewModel.nowPlaying)
-                            HorizonScrollView(titleView: "Top Bollywood", movieApi: movieViewModel.trendingBollywood)
-                            // CategoryView()
-                        }
-                        .ignoresSafeArea(edges: .top)
-                        .scrollIndicators(.hidden)
-                        .navigationBarTitleDisplayMode(.inline)
-                        .toolbar {
-                            ToolbarItem(placement: .topBarTrailing) {
-                                //                            SearchButtonView(isinSearch: $isSearchTapped)
-                                //                                .opacity(0.7)
-                                //                                .onTapGesture {
-                                //                                    isSearchTapped = true
-                                //                                }
-                            }
-                            ToolbarItem(placement: .topBarLeading) {
-                                Text("Home")
-                                    .font(.title)
-                                    .foregroundStyle(.red)
-                                    .bold()
-                            }
-                        }
-                        .toolbarBackground(.hidden, for: .navigationBar)
+            }
+            NavigationStack {
+                GeometryReader {_ in
+                    ScrollView {
+                        BannerImageView(movie: movieViewModel.trendingMovie.first ?? Mockdata.sampledata)
+                            .overlay(content: {
+                                LinearPoster()
+                            })
+                            .background(ScrollViewConfigurator {
+                                $0?.bounces = false
+                            })
+                        HorizonScrollView(titleView: "Trending", movieApi: movieViewModel.trendingMovie)
+                        HorizonScrollView(titleView: "Upcoming", movieApi: movieViewModel.upComingMovie)
+                        HorizonScrollView(titleView: "Top Rated", movieApi: movieViewModel.topRatedMovie)
+                        HorizonScrollView(titleView: "Now Playing", movieApi: movieViewModel.nowPlaying)
+                        HorizonScrollView(titleView: "Top Bollywood", movieApi: movieViewModel.trendingBollywood)
+                        // CategoryView()
                     }
+                    .ignoresSafeArea(edges: .top)
+                    .scrollIndicators(.hidden)
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar {
+                        ToolbarItem(placement: .topBarTrailing) {
+                            SearchButtonView(isInSearch: $isSearchTapped)
+                                .opacity(0.7)
+                                .onTapGesture {
+                                    isSearchTapped = true
+                                }
+                        }
+                        ToolbarItem(placement: .topBarLeading) {
+                            Text("Home")
+                                .font(.title)
+                                .foregroundStyle(.red)
+                                .bold()
+                        }
+                    }
+                   // .toolbarBackground(.hidden, for: .navigationBar)
                 }
             }
         }

@@ -84,4 +84,18 @@ final class MovieViewModel: ObservableObject, Observable {
             }
         }
     }
+
+    func getMovieSearchResults(query: String, page: Int) {
+        isLoading = true
+        Task {
+            do {
+                // swiftlint:disable:next line_length
+                searchMovie.append(contentsOf: try await MovieService.shared.loadMovieSearchResults(query: query, page: page))
+                isLoading = false
+            } catch {
+                alertItem = AlertMessage.GeneralError
+                isLoading = false
+            }
+        }
+    }
 }

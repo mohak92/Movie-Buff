@@ -146,4 +146,23 @@ class MovieService {
             throw LoadMovieDataError.invalidData
         }
     }
+
+    func loadMovieSearchResults(query: String, page: Int) async throws -> [Movie] {
+        // swiftlint:disable:next line_length
+        guard let url = URL(string: "https://api.themoviedb.org/3/search/movie?query=\(query)&include_adult=false&language=en-US&page=\(page)") else {
+            throw LoadMovieDataError.invalidURL
+        }
+
+        var request = URLRequest(url: url)
+        request.addValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
+
+        do {
+            let (data, _) = try await URLSession.shared.data(for: request)
+
+            let decoder = JSONDecoder()
+            return try decoder.decode(MovieResponse.self, from: data).results
+        } catch {
+            throw LoadMovieDataError.invalidData
+        }
+    }
 }

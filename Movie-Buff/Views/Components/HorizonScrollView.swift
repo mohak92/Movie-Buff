@@ -33,7 +33,13 @@ struct HorizonScrollView: View {
                     ForEach(movieApi) {movie in
                         NavigationLink(destination: MovieDetailView(movie: movie)) {
                             // swiftlint:disable:next line_length
-                            AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w500\(movie.posterPath ?? "")"), scale: 4.5)
+                            AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w500\(movie.posterPath ?? "")"), scale: 4.5) { phase in
+                                if let image = phase.image {
+                                    image
+                                } else {
+                                    Image("noMoviePoster").resizable()
+                                }
+                            }
 //                            MovieRemoteImage(urlString: "https://image.tmdb.org/t/p/w500\(movie.poster_path ?? "")" )
                                 .frame(width: 110, height: 162.91)
                                 .scaledToFit()
