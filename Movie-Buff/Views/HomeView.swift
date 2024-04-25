@@ -10,12 +10,12 @@ import SwiftData
 
 struct HomeView: View {
 
+    let movieService: MovieService = MovieService()
+
     var body: some View {
         TabView {
             MovieListView()
                 .tabItem { Label("Movie", systemImage: "film") }
-            TVShowsListView()
-                .tabItem { Label("TV", systemImage: "tv.fill") }
             ActorListView()
                 .tabItem { Label("Actor", systemImage: "rectangle.portrait.on.rectangle.portrait.angled.fill") }
             FavoriteMovieListView()
@@ -27,5 +27,5 @@ struct HomeView: View {
 
 #Preview {
     HomeView()
-        .modelContainer(for: Item.self, inMemory: true)
+        .environment(MovieViewModel())
 }

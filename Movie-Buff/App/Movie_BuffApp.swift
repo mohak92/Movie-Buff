@@ -11,9 +11,12 @@ import SwiftData
 @main
 struct MovieBuffApp: App {
 
+    @StateObject var movieViewModel = MovieViewModel()
+
     var body: some Scene {
         WindowGroup {
             HomeView()
+                .environmentObject(movieViewModel)
         }
     }
 }
