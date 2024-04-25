@@ -18,6 +18,8 @@ final class MovieViewModel: ObservableObject, Observable {
 
     @Published var isLoading: Bool = false
 
+    @Published var alertItem: AlertItem?
+
     func getUpcomingMovie() {
         isLoading = true
         Task {
@@ -25,7 +27,7 @@ final class MovieViewModel: ObservableObject, Observable {
                 upComingMovie = try await MovieService.shared.loadUpcomingMovies()
                 isLoading = false
             } catch {
-                // alertItem = AlertContext.GeneralError
+                alertItem = AlertMessage.GeneralError
                 isLoading = false
             }
         }
@@ -38,7 +40,7 @@ final class MovieViewModel: ObservableObject, Observable {
                 trendingMovie = try await MovieService.shared.loadTrending()
                 isLoading = false
             } catch {
-                // alertItem = AlertContext.GeneralError
+                alertItem = AlertMessage.GeneralError
                 isLoading = false
             }
         }
@@ -51,7 +53,7 @@ final class MovieViewModel: ObservableObject, Observable {
                 topRatedMovie = try await MovieService.shared.loadTopRated()
                 isLoading = false
             } catch {
-                // alertItem = AlertContext.GeneralError
+                alertItem = AlertMessage.GeneralError
                 isLoading = false
             }
         }
@@ -64,7 +66,7 @@ final class MovieViewModel: ObservableObject, Observable {
                 nowPlaying = try await MovieService.shared.loadNowPlaying()
                 isLoading = false
             } catch {
-                // alertItem = AlertContext.GeneralError
+                alertItem = AlertMessage.GeneralError
                 isLoading = false
             }
         }
@@ -77,7 +79,7 @@ final class MovieViewModel: ObservableObject, Observable {
                 trendingBollywood = try await MovieService.shared.loadBollywood()
                 isLoading = false
             } catch {
-                // alertItem = AlertContext.GeneralError
+                alertItem = AlertMessage.GeneralError
                 isLoading = false
             }
         }

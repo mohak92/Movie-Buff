@@ -67,11 +67,11 @@ struct MovieListView: View {
             movieViewModel.getNowPlaying()
             movieViewModel.getBollywood()
         }
-//        .alert(item: $movieViewModel.alertItem) { alert in
-//            Alert(title: alert.title,
-//                  message: alert.message,
-//                  dismissButton: alert.dismissButton)
-//        }
+        .alert(item: $movieViewModel.alertItem) { alert in
+            Alert(title: alert.title,
+                  message: alert.message,
+                  dismissButton: alert.dismissButton)
+        }
     }
 }
 
