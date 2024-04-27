@@ -2,17 +2,53 @@
 //  AllCastView.swift
 //  Movie-Buff
 //
-//  Created by Mohak Tamhane on 4/25/24.
+//  Created by Mohak Tamhane on 4/23/24.
 //
 
 import SwiftUI
 
 struct AllCastView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
 
-#Preview {
-    AllCastView()
+    var cast: [Cast]
+    var titleView: String
+    let columns: [GridItem] = [
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+
+    var body: some View {
+        ScrollView {
+            LazyVGrid(columns: columns) {
+                ForEach(cast) {cast in
+                    NavigationLink(destination: ActorDetailView(cast: cast.id, profilePath: cast.profilePath ?? "")) {
+                        // swiftlint:disable:next line_length
+                        AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w500\(cast.profilePath ?? "")"), scale: 4.5) { phase in
+                            if let image = phase.image {
+                                image
+                            } else {
+                                Image("noActorImage")
+                                    .resizable()
+                                    .scaledToFit()
+                            }
+                        }
+                        .frame(width: 110, height: 162.91)
+                        .scaledToFit()
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                        .scrollTransition { content, phase in
+                            content
+                                .scaleEffect(phase.isIdentity ? 1 : 0.45)
+                                .blur(radius: phase.isIdentity ? 0 : 2.5)
+                        }
+                        .overlay {
+                            OverlayCast(cast: cast)
+                        }
+                    }
+                    .padding(.leading, 15)
+                    .buttonStyle(FlatLinkStyle())
+                }.padding(.vertical, 10)
+            }
+        }
+        .navigationTitle(titleView)
+    }
 }
