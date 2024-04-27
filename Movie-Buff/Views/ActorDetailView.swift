@@ -1,13 +1,13 @@
 //
-//  EachCastView.swift
+//  ActorDetailView.swift
 //  Movie-Buff
 //
-//  Created by Mohak Tamhane on 4/25/24.
+//  Created by Mohak Tamhane on 4/23/24.
 //
 
 import SwiftUI
 
-struct EachCastView: View {
+struct ActorDetailView: View {
 
     @State var isRead = false
     var cast: Int
@@ -67,7 +67,6 @@ struct EachCastView: View {
                             .multilineTextAlignment(.leading)
                         }
                         .frame(maxWidth: .infinity)
-                        // .offset(y: -150)
 
                         if !viewModel.actorImage.isEmpty {
                             VStack(alignment: .leading) {
@@ -101,10 +100,8 @@ struct EachCastView: View {
                                 .scrollTargetBehavior(.viewAligned)
                                 .safeAreaPadding(.horizontal, 10)
                             }
-                            // .offset(y: -150)
                         }
                         CastMovieCreditsView(titleView: "Movie", personId: cast)
-                        // .offset(y: -150)
                     }
                 }
                 .scrollIndicators(.hidden)
@@ -188,6 +185,6 @@ struct CastBiograp: View {
 }
 
 #Preview(body: {
-    EachCastView(cast: 976, profilePath: "")
+    ActorDetailView(cast: 976, profilePath: "")
         .environment(MovieViewModel())
 })
