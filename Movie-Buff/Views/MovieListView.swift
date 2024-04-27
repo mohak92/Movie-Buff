@@ -30,11 +30,11 @@ struct MovieListView: View {
                             .background(ScrollViewConfigurator {
                                 $0?.bounces = false
                             })
-                        HorizonScrollView(titleView: "Trending", movieApi: movieViewModel.trendingMovie)
-                        HorizonScrollView(titleView: "Upcoming", movieApi: movieViewModel.upComingMovie)
-                        HorizonScrollView(titleView: "Top Rated", movieApi: movieViewModel.topRatedMovie)
-                        HorizonScrollView(titleView: "Now Playing", movieApi: movieViewModel.nowPlaying)
-                        HorizonScrollView(titleView: "Top Bollywood", movieApi: movieViewModel.trendingBollywood)
+                        HorizontalScrollView(titleView: "Trending", movieApi: movieViewModel.trendingMovie)
+                        HorizontalScrollView(titleView: "Upcoming", movieApi: movieViewModel.upComingMovie)
+                        HorizontalScrollView(titleView: "Top Rated", movieApi: movieViewModel.topRatedMovie)
+                        HorizontalScrollView(titleView: "Now Playing", movieApi: movieViewModel.nowPlaying)
+                        HorizontalScrollView(titleView: "Top Bollywood", movieApi: movieViewModel.trendingBollywood)
                         // CategoryView()
                     }
                     .ignoresSafeArea(edges: .top)
