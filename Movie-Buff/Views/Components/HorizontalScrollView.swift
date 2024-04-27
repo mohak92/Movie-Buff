@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HorizonScrollView: View {
+struct HorizontalScrollView: View {
 
     var titleView: String
     var movieApi: [Movie]
@@ -68,5 +68,5 @@ struct HorizonScrollView: View {
 }
 
 #Preview {
-    HorizonScrollView(titleView: "testse", movieApi: Mockdata.movielist)
+    HorizontalScrollView(titleView: "trending", movieApi: Mockdata.movielist)
 }
