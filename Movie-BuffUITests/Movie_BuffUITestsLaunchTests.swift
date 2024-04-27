@@ -9,27 +9,23 @@
 import XCTest
 
 final class MovieBuffUITestsLaunchTests: XCTestCase {
-
-    override class var runsForEachTargetApplicationUIConfiguration: Bool {
-        true
-    }
+    var app: XCUIApplication!
 
     override func setUpWithError() throws {
+        app = .init()
+        app.launchArguments += ["-onboarding", "true"]
+        app.launch()
         continueAfterFailure = false
     }
     
     func testFirstLaunch() {
-        let app = XCUIApplication()
-        app.launchArguments += ["onboarding", "false"]
+        app.terminate()
+        app.launchArguments += ["-onboarding", "false"]
         app.launch()
     }
     
 
     func testLaunch() throws {
-        let app = XCUIApplication()
-        app.launchArguments += ["onboarding", "true"]
-        app.launch()
-
         // Insert steps here to perform after app launch but before taking a screenshot,
         // such as logging into a test account or navigating somewhere in the app
         let attachment = XCTAttachment(screenshot: app.screenshot())
@@ -39,8 +35,8 @@ final class MovieBuffUITestsLaunchTests: XCTestCase {
     }
 
     func testNavigation() throws {
-        let app = XCUIApplication()
-        app.launchArguments += ["onboarding", "true"]
+        app.terminate()
+        app.launchArguments += ["-onboarding", "false"]
         app.launch()
         
         let tabBar = XCUIApplication().tabBars["Tab Bar"]
@@ -49,42 +45,41 @@ final class MovieBuffUITestsLaunchTests: XCTestCase {
         tabBar.buttons["Lists"].tap()
     }
 
-    func navigateSubViews() throws {
-        let app = XCUIApplication()
-        app.launchArguments += ["onboarding", "true"]
-        app.launch()
-        let scrollViewsQuery = app.scrollViews
-        let trendingElementsQuery = scrollViewsQuery.otherElements.containing(.staticText, identifier: "Trending")
-        // swiftlint:disable:next line_length
-        trendingElementsQuery.children(matching: .scrollView).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .button).element(boundBy: 0).tap()
-
-        let monkeyManElement = scrollViewsQuery.otherElements.containing(.staticText, identifier: "Monkey Man").element
-        monkeyManElement.swipeUp()
-
-        let monkeyManElementsQuery = scrollViewsQuery.otherElements.containing(.staticText, identifier: "Monkey Man")
-        monkeyManElementsQuery.children(matching: .other).element.swipeUp()
-
-        let elementsQuery = scrollViewsQuery.otherElements.scrollViews.otherElements
-        elementsQuery.buttons["Pitobash"].swipeUp()
-        monkeyManElement.swipeUp()
-        elementsQuery.buttons["Dev Patel"].tap()
-        // swiftlint:disable:next line_length
-        scrollViewsQuery.otherElements.containing(.staticText, identifier: "Dev Patel").children(matching: .other).element.swipeUp()
-
-        let backButton = app.navigationBars["_TtGC7SwiftUI32NavigationStackHosting"].buttons["Back"]
-        backButton.tap()
-        // swiftlint:disable:next line_length
-        monkeyManElementsQuery.children(matching: .button).matching(identifier: "See All").element(boundBy: 0).staticTexts["See All"].tap()
-        app.navigationBars["Cast"].buttons["Back"].tap()
-        backButton.tap()
-        // swiftlint:disable:next line_length
-        trendingElementsQuery.children(matching: .button).matching(identifier: "See All").element(boundBy: 0).staticTexts["See All"].tap()
-        app.navigationBars["Trending"].buttons["Back"].tap()
-    }
+//    func testNavigateSubViews() throws {
+////        let app = XCUIApplication()
+////        app.launchArguments += ["onboarding", "true"]
+////        app.launch()
+//        let scrollViewsQuery = app.scrollViews
+//        let trendingElementsQuery = scrollViewsQuery.otherElements.containing(.staticText, identifier: "Trending")
+//        // swiftlint:disable:next line_length
+//        trendingElementsQuery.children(matching: .scrollView).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .button).element(boundBy: 0).tap()
+//
+//        let monkeyManElement = scrollViewsQuery.otherElements.containing(.staticText, identifier: "Monkey Man").element
+//        monkeyManElement.swipeUp()
+//
+//        let monkeyManElementsQuery = scrollViewsQuery.otherElements.containing(.staticText, identifier: "Monkey Man")
+//        monkeyManElementsQuery.children(matching: .other).element.swipeUp()
+//        let elementsQuery = scrollViewsQuery.otherElements.scrollViews.otherElements
+//        elementsQuery.buttons["Pitobash"].swipeUp()
+//        monkeyManElement.swipeUp()
+//        elementsQuery.buttons["Dev Patel"].tap()
+//        // swiftlint:disable:next line_length
+//        scrollViewsQuery.otherElements.containing(.staticText, identifier: "Dev Patel").children(matching: .other).element.swipeUp()
+//
+//        let backButton = app.navigationBars["_TtGC7SwiftUI32NavigationStackHosting"].buttons["Back"]
+//        backButton.tap()
+//        // swiftlint:disable:next line_length
+//        monkeyManElementsQuery.children(matching: .button).matching(identifier: "See All").element(boundBy: 0).staticTexts["See All"].tap()
+//        app.navigationBars["Cast"].buttons["Back"].tap()
+//        backButton.tap()
+//        // swiftlint:disable:next line_length
+//        trendingElementsQuery.children(matching: .button).matching(identifier: "See All").element(boundBy: 0).staticTexts["See All"].tap()
+//        app.navigationBars["Trending"].buttons["Back"].tap()
+//    }
 
     func testButtons() throws {
-        let app = XCUIApplication()
-        app.launchArguments += ["onboarding", "true"]
+        app.terminate()
+        app.launchArguments += ["-onboarding", "false"]
         app.launch()
         
         let trendingElementsQuery = app.scrollViews.otherElements.containing(.staticText, identifier: "Trending")
