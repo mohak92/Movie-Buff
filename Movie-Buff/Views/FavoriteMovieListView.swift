@@ -28,7 +28,6 @@ struct FavoriteMovieListView: View {
                                                                              genreIds: movie.genreIds,
                                                                              posterPath: movie.posterPath))) {
                         HStack {
-                          //  MovieRemoteImage(urlString: "https://image.tmdb.org/t/p/w500\(movie.poster_path ?? "")")
                             // swiftlint:disable:next line_length
                             AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w500\(movie.posterPath ?? "")"), scale: 4.5)
                                 .frame(width: 100, height: 150)

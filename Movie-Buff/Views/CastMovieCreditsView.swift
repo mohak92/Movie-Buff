@@ -33,7 +33,6 @@ struct CastMovieCreditsView: View {
                 LazyHStack {
                     ForEach(viewModel.actorMovieCredits) {movie in
                         NavigationLink(destination: MovieDetailView(movie: movie)) {
-//                            MovieRemoteImage(urlString: "https://image.tmdb.org/t/p/w500\(movie.poster_path ?? "")" )
                             // swiftlint:disable:next line_length
                             AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w500\(movie.posterPath ?? "")"), scale: 4.5)
                                 .frame(width: 110, height: 162.91)

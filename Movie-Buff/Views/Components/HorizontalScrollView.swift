@@ -40,18 +40,17 @@ struct HorizontalScrollView: View {
                                     Image("noMoviePoster").resizable()
                                 }
                             }
-//                            MovieRemoteImage(urlString: "https://image.tmdb.org/t/p/w500\(movie.poster_path ?? "")" )
-                                .frame(width: 110, height: 162.91)
-                                .scaledToFit()
-                                .clipShape(RoundedRectangle(cornerRadius: 8))
-                                .scrollTransition { content, phase in
-                                    content
-                                        .scaleEffect(phase.isIdentity ? 1 : 0.45)
-                                        .blur(radius: phase.isIdentity ? 0 : 2.5)
-                                }
-                                .contextMenu {
-                                    ContextMenuMovieCell(movie: movie)
-                                }
+                            .frame(width: 110, height: 162.91)
+                            .scaledToFit()
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                            .scrollTransition { content, phase in
+                                content
+                                    .scaleEffect(phase.isIdentity ? 1 : 0.45)
+                                    .blur(radius: phase.isIdentity ? 0 : 2.5)
+                            }
+                            .contextMenu {
+                                ContextMenuMovieCell(movie: movie)
+                            }
                         }
                         .buttonStyle(FlatLinkStyle())
                     }
