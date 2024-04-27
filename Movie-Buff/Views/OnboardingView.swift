@@ -9,7 +9,7 @@ import SwiftUI
 
 struct OnboardingView: View {
 
-    @AppStorage("onboarding")  var isOnboardingViewActive: Bool = true
+    @AppStorage("onboarding") var isOnboardingViewActive: Bool = true
 
     @State private var buttonWidth: Double = UIScreen.main.bounds.width - 40
     @State private var buttonOffset: CGFloat = 0

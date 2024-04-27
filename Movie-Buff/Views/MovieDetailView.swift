@@ -103,6 +103,7 @@ struct MovieDetailView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 LikeButton(movie: movie)
+                    .accessibilityIdentifier("Love")
             }
         }
     }
