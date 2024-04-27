@@ -76,7 +76,7 @@ struct AlertMessage {
                                        message: Text("Your Information save/retrieve process can't be done."),
                                        dismissButton: .default(Text("OK")))
 
-    static let GeneralError = AlertItem(title: Text("Willy Nilly"),
+    static let GeneralError = AlertItem(title: Text("Movie Buff"),
                                     message: Text("Something wrong with the data.\nPlease contact support."),
                                     dismissButton: .default(Text("OK")))
 }
