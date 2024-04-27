@@ -48,4 +48,28 @@ struct Mockdata {
         Movie(id: 2, title: "", overview: "", releaseDate: "", originalLanguage: "", genreIds: [0], posterPath: ""),
         Movie(id: 3, title: "", overview: "", releaseDate: "", originalLanguage: "", genreIds: [0], posterPath: "")
     ]
+
+    static let movieDetailsample = MovieDetail(id: 0,
+                                               title: "",
+                                               overview: "",
+                                               releaseDate: "",
+                                               originalLanguage: "",
+                                               budget: 0,
+                                               revenue: 0,
+                                               runtime: 0,
+                                               status: "",
+                                               voteAverage: 0,
+                                               posterPath: "")
+
+    static let actorDetailSample = ActorDetail(id: 0,
+                                             name: "",
+                                             biography: "",
+                                             knownForDepartment: "",
+                                             placeOfBirth: "",
+                                             popularity: 0,
+                                             birthday: "",
+                                             alsoKnownAs: [
+                                                ""
+                                              ],
+                                             profilePath: "")
 }
