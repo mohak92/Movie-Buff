@@ -94,6 +94,19 @@ final class MovieBuffUITestsLaunchTests: XCTestCase {
         app.navigationBars["Search"].buttons["Back"].tap()
         trendingElementsQuery.children(matching: .button).element(boundBy: 0).tap()
     }
+    
+    func testMovieDetailView() throws {
+        app.terminate()
+        app.launchArguments += ["-onboarding", "false"]
+        app.launch()
+        
+        app.scrollViews.otherElements.containing(.staticText, identifier:"Trending").children(matching: .button).element(boundBy: 0).tap()
+        app.navigationBars["_TtGC7SwiftUI32NavigationStackHosting"].buttons["Back"].tap()
+        
+        let app = XCUIApplication()
+        let scrollViewsQuery = app.scrollViews
+        scrollViewsQuery.otherElements.containing(.staticText, identifier:"Trending").children(matching: .button).element(boundBy: 0).tap()
+    }
 }
 
 extension XCUIApplication {
